@@ -1,10 +1,5 @@
 package user;
 
-import item.Item;
-import purchase.PayPurchase;
-import purchase.PurchaseStrategy;
-
-import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.List;
 

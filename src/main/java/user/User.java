@@ -1,13 +1,13 @@
 package user;
 
-import category.BaseCategory;
 import item.Comment;
 import item.Item;
 import item.Point;
-import purchase.PurchaseStrategy;
+import payment.PaymentHandler;
+import payment.PurchaseStrategy;
+import payment.Transaction;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -106,8 +106,98 @@ public class User {
         return true;
     }
 
-    public boolean purchase(List<Item> items, String discountCode) {
-        boolean shoppingResult = this.purchaseStrategy.purchase(items.iterator(), this, discountCode);
-        return shoppingResult;
+    public boolean purchase(List<Item> items, String discountCode, PaymentHandler paymentHandler) {
+        double totalPrice = 0;
+        for (Item item : items) {
+            totalPrice += item.calculateCost();
+        }
+        if (this.getCredit() >= totalPrice) {
+            double shoppingPrice = this.purchaseStrategy.purchase(items.iterator(), this, discountCode);
+            Transaction userTransaction = new Transaction(this, items, shoppingPrice);
+            paymentHandler.addTransaction(userTransaction);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getNationalCode() {
+        return nationalCode;
+    }
+
+    public void setNationalCode(String nationalCode) {
+        this.nationalCode = nationalCode;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Double getCredit() {
+        return credit;
+    }
+
+    public void setCredit(Double credit) {
+        this.credit = credit;
+    }
+
+    public boolean isLoginStatus() {
+        return loginStatus;
+    }
+
+    public void setLoginStatus(boolean loginStatus) {
+        this.loginStatus = loginStatus;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }
