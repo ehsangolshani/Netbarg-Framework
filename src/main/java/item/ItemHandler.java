@@ -15,16 +15,12 @@ import java.util.*;
 public class ItemHandler {
     private List<Item> items;
     private List<Tag> tags = new ArrayList<Tag>();
-    private ItemSearchStrategy itemSearchStrategy;
-    private ItemFinderStrategy itemFinderStrategy;
     private CompositeCategory itemCategories;
 
-    private ItemHandler(ItemSearchStrategy itemSearchStrategy, ItemFinderStrategy itemFinderStrategy
+    public ItemHandler(ItemSearchStrategy itemSearchStrategy, ItemFinderStrategy itemFinderStrategy
             , CompositeCategory itemCategories) {
         this.items = new ArrayList<Item>();
         this.tags = new ArrayList<Tag>();
-        this.itemSearchStrategy = itemSearchStrategy;
-        this.itemFinderStrategy = itemFinderStrategy;
         this.itemCategories = itemCategories;
     }
 
@@ -59,14 +55,6 @@ public class ItemHandler {
 
     public List<Tag> getTags() {
         return tags;
-    }
-
-    public List<Item> searchItems(String data, List<Item> items) {
-        return this.itemSearchStrategy.searchItems(data, this.items.iterator());
-    }
-
-    public List<Item> findItems(String data, List<Item> items) {
-        return this.itemSearchStrategy.searchItems(data, this.items.iterator());
     }
 
     public void setitemCategories(CompositeCategory itemCategories) {

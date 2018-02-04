@@ -7,15 +7,11 @@ import java.util.List;
  * Created by ehsangolshani on 1/1/18.
  */
 public class UserHandler {
-    private static UserHandler instance = new UserHandler();
     private List<User> users;
     private List<Provider> providers;
 
-    public static UserHandler getInstance() {
-        return instance;
-    }
 
-    private UserHandler() {
+    public UserHandler() {
         users = new ArrayList<User>();
         providers = new ArrayList<Provider>();
     }
