@@ -4,6 +4,7 @@ package user;
 import item.Comment;
 import item.Item;
 import item.ItemHandler;
+import item.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +41,14 @@ public class Provider {
         this.likedUsers.remove(user);
     }
 
-    public void createItem(Item item, ItemHandler itemHandler) {
+    public void createItem(Item item, ItemHandler itemHandler, List<Tag> tags) {
+        item.addTags(tags);
+        for (Tag tag : tags) {
+            tag.addItem(item);
+        }
         itemHandler.addItem(item);
+        itemHandler.addTags(tags);
+
     }
 }
 

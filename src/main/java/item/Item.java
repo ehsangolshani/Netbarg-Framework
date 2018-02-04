@@ -4,6 +4,7 @@ import category.BaseCategory;
 import user.Provider;
 import user.User;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,13 +26,14 @@ public class Item {
     private Date finishDate;
     private String longitude;
     private String latitude;
+    private List<Tag> tags;
     private List<User> likedUsers;
     private ItemComments comments;
     private ItemPoints points;
     private boolean isSpecialOffer;
 
 
-    public Item(String code, Provider provider, BaseCategory category, Specification specification, TermOfUse termOfUse, Description description, double defaultCost, double discountPercent, String region, Date registrationDate, Date startDate, Date finishDate, String longitude, String latitude, List<User> likes, ItemComments comments, ItemPoints points, boolean isSpecialOffer) {
+    public Item(String code, Provider provider, BaseCategory category, Specification specification, TermOfUse termOfUse, Description description, double defaultCost, double discountPercent, String region, Date registrationDate, Date startDate, Date finishDate, String longitude, String latitude, List<Tag> tags, ItemComments comments, ItemPoints points, boolean isSpecialOffer) {
         this.code = code;
         this.provider = provider;
         this.category = category;
@@ -46,7 +48,14 @@ public class Item {
         this.finishDate = finishDate;
         this.longitude = longitude;
         this.latitude = latitude;
-        this.likedUsers = likes;
+
+        if (tags == null) {
+            this.tags = new ArrayList<Tag>();
+        } else {
+            this.tags = tags;
+        }
+
+        this.likedUsers = new ArrayList<User>();
         this.comments = comments;
         this.points = points;
         this.isSpecialOffer = isSpecialOffer;
@@ -67,6 +76,18 @@ public class Item {
 
     public void removeLike(User user) {
         this.likedUsers.remove(user);
+    }
+
+    public void addTag(Tag tag) {
+        this.tags.add(tag);
+    }
+
+    public void addTags(List<Tag> tags) {
+        this.tags.addAll(tags);
+    }
+
+    public void removeTag(Tag tag) {
+        this.tags.remove(tag);
     }
 
 

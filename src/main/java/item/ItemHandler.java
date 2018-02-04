@@ -48,6 +48,10 @@ public class ItemHandler {
         this.tags.add(tag);
     }
 
+    public void addTags(List<Tag> tags) {
+        this.tags.addAll(tags);
+    }
+
     public void removeTag(Tag tag) {
         this.tags.remove(tag);
     }

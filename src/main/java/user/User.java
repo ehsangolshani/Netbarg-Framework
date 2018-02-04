@@ -22,6 +22,7 @@ public class User {
     private String nationalCode;
     private Gender gender;
     private List<Item> purchasedItems;
+    private List<Item> wishList;
     private Double credit;
     private boolean loginStatus;
     private ShoppingCart shoppingCart;
@@ -38,6 +39,7 @@ public class User {
         this.nationalCode = nationalCode;
         this.gender = gender;
         this.purchasedItems = new ArrayList<Item>();
+        this.wishList = new ArrayList<Item>();
         this.credit = credit;
         this.loginStatus = false;
         this.shoppingCart = new ShoppingCart(new ArrayList<Item>());
@@ -70,6 +72,14 @@ public class User {
 
     public void removePoint(Point point, Item item) {
         item.getPoints().removePoint(point);
+    }
+
+    public void addToWishList(Item item) {
+        this.wishList.add(item);
+    }
+
+    public void removeFromWishList(Item item) {
+        this.wishList.remove(item);
     }
 
     public void like(Item item) {
