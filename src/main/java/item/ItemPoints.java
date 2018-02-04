@@ -44,6 +44,10 @@ public class ItemPoints {
         this.points.add(point);
     }
 
+    public void removePoint(Point point) {
+        this.points.remove(point);
+    }
+
     public void addPoints(List<Point> points) {
         this.points.addAll(points);
     }

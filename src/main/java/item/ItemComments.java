@@ -36,6 +36,10 @@ public class ItemComments {
         this.comments.add(comment);
     }
 
+    public void removeComment(Comment comment) {
+        this.comments.remove(comment);
+    }
+
     public void addComments(List<Comment> comments) {
         this.comments.addAll(comments);
     }

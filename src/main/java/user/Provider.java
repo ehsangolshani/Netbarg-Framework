@@ -3,6 +3,7 @@ package user;
 
 import item.Comment;
 import item.Item;
+import item.ItemHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,20 +29,8 @@ public class Provider {
         this.longitude = longitude;
         this.latitude = latitude;
         this.likedUsers = new ArrayList<User>();
-        this.publishItems = new ArrayList<Item>();
     }
 
-    public void addpublishedItem(Item item) {
-        this.publishItems.add(item);
-    }
-
-    public void removePublishedItem(Item item) {
-        this.publishItems.remove(item);
-    }
-
-    public List<Item> getPublishedItems() {
-        return this.publishItems;
-    }
 
     public void addLike(User user) {
         this.likedUsers.add(user);
@@ -51,6 +40,8 @@ public class Provider {
         this.likedUsers.remove(user);
     }
 
-
+    public void createItem(Item item, ItemHandler itemHandler) {
+        itemHandler.addItem(item);
+    }
 }
 

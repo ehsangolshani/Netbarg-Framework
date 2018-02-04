@@ -32,8 +32,8 @@ public class ItemHandler {
     }
 
 
-    public void createItem(Item item, BaseCategory category) {
-        this.items.put(item, category);
+    public void addItem(Item item) {
+        this.items.put(item, item.getCategory());
     }
 
     public void deleteItem(Item item) {

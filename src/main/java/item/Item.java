@@ -23,13 +23,15 @@ public class Item {
     private Date registrationDate;
     private Date startDate;
     private Date finishDate;
+    private String longitude;
+    private String latitude;
     private List<User> likedUsers;
     private ItemComments comments;
     private ItemPoints points;
     private boolean isSpecialOffer;
-    private String sellOut;
 
-    public Item(String code, Provider provider, BaseCategory category, Specification specification, TermOfUse termOfUse, Description description, double defaultCost, double discountPercent, String region, Date registrationDate, Date startDate, Date finishDate, List<User> likes, ItemComments comments, ItemPoints points, boolean isSpecialOffer, String sellOut) {
+
+    public Item(String code, Provider provider, BaseCategory category, Specification specification, TermOfUse termOfUse, Description description, double defaultCost, double discountPercent, String region, Date registrationDate, Date startDate, Date finishDate, String longitude, String latitude, List<User> likes, ItemComments comments, ItemPoints points, boolean isSpecialOffer) {
         this.code = code;
         this.provider = provider;
         this.category = category;
@@ -42,10 +44,13 @@ public class Item {
         this.registrationDate = registrationDate;
         this.startDate = startDate;
         this.finishDate = finishDate;
+        this.longitude = longitude;
+        this.latitude = latitude;
         this.likedUsers = likes;
         this.comments = comments;
         this.points = points;
         this.isSpecialOffer = isSpecialOffer;
+
     }
 
     public void sellOut(User user) {

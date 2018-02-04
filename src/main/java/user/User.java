@@ -3,14 +3,18 @@ package user;
 import category.BaseCategory;
 import item.Comment;
 import item.Item;
+import item.Point;
+import purchase.PurchaseStrategy;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * Created by ehsangolshani on 1/1/18.
  */
 public class User {
+    private Account account;
     private String firstName;
     private String lastName;
     private String email;
@@ -18,11 +22,15 @@ public class User {
     private String nationalCode;
     private Gender gender;
     private List<Item> purchasedItems;
-    private List<Comment> comments;
-    private List<Item> likedItems;
     private Double credit;
+    private boolean loginStatus;
+    private ShoppingCart shoppingCart;
+    private PurchaseStrategy purchaseStrategy;
 
-    public User(String firstName, String lastName, String email, String mobileNumber, String nationalCode, Gender gender, Double credit) {
+
+    public User(Account account, String firstName, String lastName, String email, String mobileNumber,
+                String nationalCode, Gender gender, Double credit, PurchaseStrategy purchaseStrategy) {
+        this.account = account;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -30,9 +38,10 @@ public class User {
         this.nationalCode = nationalCode;
         this.gender = gender;
         this.purchasedItems = new ArrayList<Item>();
-        this.comments = new ArrayList<Comment>();
-        this.likedItems = new ArrayList<Item>();
         this.credit = credit;
+        this.loginStatus = false;
+        this.shoppingCart = new ShoppingCart(new ArrayList<Item>());
+        this.purchaseStrategy = purchaseStrategy;
     }
 
     public void addPurchasedItem(Item item) {
@@ -47,30 +56,48 @@ public class User {
         return this.purchasedItems;
     }
 
-    public void addComment(Comment comment) {
-        this.comments.add(comment);
+    public void addComment(Comment comment, Item item) {
+        item.getComments().addComment(comment);
     }
 
-    public void removeComment(Comment comment) {
-        this.comments.remove(comment);
+    public void removeComment(Comment comment, Item item) {
+        item.getComments().removeComment(comment);
     }
 
-    public List<Comment> getComments() {
-        return this.comments;
+    public void addPoint(Point point, Item item) {
+        item.getPoints().addPoint(point);
+    }
+
+    public void removePoint(Point point, Item item) {
+        item.getPoints().removePoint(point);
     }
 
     public void like(Item item) {
         item.addLike(this);
-        this.likedItems.add(item);
     }
 
     public void unlike(Item item) {
         item.removeLike(this);
-        this.likedItems.remove(item);
     }
 
+    public boolean login(String username, String password) {
+        if (this.account.accountMatch(username, password)) {
+            this.loginStatus = true;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    public List<Item> getLikedItems() {
-        return likedItems;
+    public boolean logout() {
+        if (this.loginStatus == true) {
+            this.loginStatus = false;
+        }
+        return true;
+    }
+
+    public boolean purchase(List<Item> items, String discountCode) {
+        boolean shoppingResult = this.purchaseStrategy.purchase(items.iterator(), this, discountCode);
+        return shoppingResult;
     }
 }
