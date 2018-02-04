@@ -2,6 +2,8 @@ package item;
 
 import category.BaseCategory;
 import category.Category;
+import category.CompositeCategory;
+import search.ItemFinderStrategy;
 import search.ItemSearchByName;
 import search.ItemSearchStrategy;
 
@@ -11,36 +13,35 @@ import java.util.*;
  * Created by ehsangolshani on 1/1/18.
  */
 public class ItemHandler {
-    private static ItemHandler instance = new ItemHandler();
-    private Map<Item, BaseCategory> items;
+    private List<Item> items;
     private List<Tag> tags = new ArrayList<Tag>();
     private ItemSearchStrategy itemSearchStrategy;
-    private Category itemsCategory;
+    private ItemFinderStrategy itemFinderStrategy;
+    private CompositeCategory itemCategories;
 
-    public static ItemHandler getInstance() {
-        if (instance != null) {
-            return instance;
-        } else {
-            instance = new ItemHandler();
-            return instance;
-        }
-    }
-
-    private ItemHandler() {
-        items = new HashMap<Item, BaseCategory>();
-        itemSearchStrategy = new ItemSearchByName();
+    private ItemHandler(ItemSearchStrategy itemSearchStrategy, ItemFinderStrategy itemFinderStrategy
+            , CompositeCategory itemCategories) {
+        this.items = new ArrayList<Item>();
+        this.tags = new ArrayList<Tag>();
+        this.itemSearchStrategy = itemSearchStrategy;
+        this.itemFinderStrategy = itemFinderStrategy;
+        this.itemCategories = itemCategories;
     }
 
 
     public void addItem(Item item) {
-        this.items.put(item, item.getCategory());
+        this.items.add(item);
+    }
+
+    public void addItems(List<Item> items) {
+        this.items.addAll(items);
     }
 
     public void deleteItem(Item item) {
         this.items.remove(item);
     }
 
-    public Map<Item, BaseCategory> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
@@ -60,17 +61,20 @@ public class ItemHandler {
         return tags;
     }
 
-    public Item searchItem(String data, Map<Item, BaseCategory> items) {
-        Iterator<Map.Entry<Item, BaseCategory>> itemsIterator = this.items.entrySet().iterator();
-        return this.itemSearchStrategy.searchItem(data, itemsIterator);
+    public List<Item> searchItems(String data, List<Item> items) {
+        return this.itemSearchStrategy.searchItems(data, this.items.iterator());
     }
 
-    public Category getItemsCategory() {
-        return itemsCategory;
+    public List<Item> findItems(String data, List<Item> items) {
+        return this.itemSearchStrategy.searchItems(data, this.items.iterator());
     }
 
-    public void setItemsCategory(Category itemsCategory) {
-        this.itemsCategory = itemsCategory;
+    public void setitemCategories(CompositeCategory itemCategories) {
+        this.itemCategories = itemCategories;
+    }
+
+    public Category getitemCategories() {
+        return itemCategories;
     }
 
 }

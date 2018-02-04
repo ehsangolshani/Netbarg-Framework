@@ -1,6 +1,5 @@
 package search;
 
-import category.BaseCategory;
 import item.Item;
 
 import java.util.*;
@@ -10,6 +9,6 @@ import java.util.*;
  * Created by ehsangolshani on 1/1/18.
  */
 public interface ItemSearchStrategy {
-    Item searchItem(String data, Iterator<Map.Entry<Item, BaseCategory>> itemsIterator);
+    List<Item> searchItems(String data, Iterator<Item> items);
 }
 

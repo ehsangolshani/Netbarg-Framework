@@ -1,16 +1,15 @@
 package search;
 
-import category.BaseCategory;
 import item.Item;
 
 import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 
 /**
  * Created by ehsangolshani on 2/4/18.
  */
 public class ItemSearchByCity implements ItemSearchStrategy {
-    public Item searchItem(String data, Iterator<Map.Entry<Item, BaseCategory>> itemsIterator) {
+    public List<Item> searchItems(String data, Iterator<Item> items) {
         return null;
     }
 }
