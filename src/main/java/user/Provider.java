@@ -63,7 +63,7 @@ public class Provider {
         }
         itemHandler.addItem(item);
         itemHandler.addTags(tags);
-
+        this.publish(item);
     }
 
     @Override

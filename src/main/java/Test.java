@@ -103,7 +103,7 @@ public class Test {
         Tag tag3 = new Tag("tag3", null);
 
         //        creating items
-        Item sportItem1 = new Item("eek4", ehsanCo, sportsCategory, sportSpecification1, sportTermOfUse1,
+        Item sportItem1 = new Item("code1", ehsanCo, sportsCategory, sportSpecification1, sportTermOfUse1,
                 sportDescription1, 1500.0, 5.0, "akbar abad", null,
                 null, null, "59.96", "34.76", null, false);
 
@@ -111,14 +111,14 @@ public class Test {
         sportItem1.addTag(tag2);
         sportItem1.addTag(tag3);
 
-        Item sportItem2 = new Item("eekgjg4", ehsanCo, sportsCategory, sportSpecification2, sportTermOfUse2,
+        Item sportItem2 = new Item("code2", ehsanCo, sportsCategory, sportSpecification2, sportTermOfUse2,
                 sportDescription2, 1400.0, 5.0, "akbar abad", null,
                 null, null, "59.96", "34.76", null, false);
 
         sportItem2.addTag(tag1);
 
 
-        Item restaurantItem1 = new Item("egbfek4", jasemCo, restaurantCategory, restaurantSpecification1, restaurantTermOfUse1,
+        Item restaurantItem1 = new Item("code3", jasemCo, restaurantCategory, restaurantSpecification1, restaurantTermOfUse1,
                 restaurantDescription1, 1500.0, 5.0, "akbar abad", null,
                 null, null, "59.96", "34.76", null, false);
 
@@ -127,15 +127,15 @@ public class Test {
         restaurantItem1.addTag(tag3);
 
 
-        Item healthCareItem1 = new Item("eevfvk4", ehsanCo, healthCareCategory, healthCareSpecification1, healthCareTermOfUse1,
+        Item healthCareItem1 = new Item("code4", ehsanCo, healthCareCategory, healthCareSpecification1, healthCareTermOfUse1,
                 healthCareDescription1, 1500.0, 5.0, "akbar abad", null,
                 null, null, "59.96", "34.76", null, false);
 
-        Item healthCareItem2 = new Item("eekdcd4", jasemCo, healthCareCategory, healthCareSpecification2, healthCareTermOfUse2,
+        Item healthCareItem2 = new Item("code5", jasemCo, healthCareCategory, healthCareSpecification2, healthCareTermOfUse2,
                 healthCareDescription2, 1500.0, 5.0, "akbar abad", null,
                 null, null, "59.96", "34.76", null, false);
 
-        Item healthCareItem3 = new Item("eecdck4", ehsanCo, healthCareCategory, healthCareSpecification3, healthCareTermOfUse3,
+        Item healthCareItem3 = new Item("code6", ehsanCo, healthCareCategory, healthCareSpecification3, healthCareTermOfUse3,
                 healthCareDescription3, 1500.0, 5.0, "akbar abad", null,
                 null, null, "59.96", "34.76", null, false);
 
