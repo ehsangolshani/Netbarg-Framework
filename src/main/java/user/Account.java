@@ -53,4 +53,9 @@ public class Account {
     public void setCredit(double credit) {
         this.credit = credit;
     }
+
+    @Override
+    public String toString() {
+        return "account: " + this.username + " " + this.password;
+    }
 }

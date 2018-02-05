@@ -1,6 +1,5 @@
 package item;
 
-import category.BaseCategory;
 import user.Provider;
 import user.User;
 
@@ -30,10 +29,14 @@ public class Item {
     private List<User> likedUsers;
     private ItemComments comments;
     private ItemPoints points;
+    private ItemSales sales;
     private boolean isSpecialOffer;
 
 
-    public Item(String code, Provider provider, BaseCategory category, Specification specification, TermOfUse termOfUse, Description description, double defaultCost, double discountPercent, String region, Date registrationDate, Date startDate, Date finishDate, String longitude, String latitude, List<Tag> tags, ItemComments comments, ItemPoints points, boolean isSpecialOffer) {
+    public Item(String code, Provider provider, BaseCategory category, Specification specification,
+                TermOfUse termOfUse, Description description, double defaultCost, double discountPercent,
+                String region, Date registrationDate, Date startDate, Date finishDate, String longitude,
+                String latitude, List<Tag> tags, boolean isSpecialOffer) {
         this.code = code;
         this.provider = provider;
         this.category = category;
@@ -56,8 +59,9 @@ public class Item {
         }
 
         this.likedUsers = new ArrayList<User>();
-        this.comments = comments;
-        this.points = points;
+        this.comments = new ItemComments(null);
+        this.points = new ItemPoints(null);
+        this.sales = new ItemSales(null);
         this.isSpecialOffer = isSpecialOffer;
 
     }
@@ -80,14 +84,19 @@ public class Item {
 
     public void addTag(Tag tag) {
         this.tags.add(tag);
+        tag.addItem(this);
     }
 
     public void addTags(List<Tag> tags) {
         this.tags.addAll(tags);
+        for (Tag tag : tags) {
+            tag.addItem(this);
+        }
     }
 
     public void removeTag(Tag tag) {
         this.tags.remove(tag);
+        tag.removeItem(this);
     }
 
 
@@ -187,6 +196,30 @@ public class Item {
         this.finishDate = finishDate;
     }
 
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
     public List<User> getLikedUsers() {
         return likedUsers;
     }
@@ -211,12 +244,25 @@ public class Item {
         this.points = points;
     }
 
+    public ItemSales getSales() {
+        return this.sales;
+    }
+
+    public void setSales(ItemSales sales) {
+        this.sales = sales;
+    }
+
     public boolean isSpecialOffer() {
         return isSpecialOffer;
     }
 
     public void setSpecialOffer(boolean specialOffer) {
         isSpecialOffer = specialOffer;
+    }
+
+    @Override
+    public String toString() {
+        return this.code;
     }
 }
 

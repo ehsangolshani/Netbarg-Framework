@@ -1,4 +1,4 @@
-package category;
+package item;
 
 /**
  * Created by ehsangolshani on 12/31/17.

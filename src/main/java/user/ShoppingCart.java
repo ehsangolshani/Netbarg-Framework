@@ -14,6 +14,9 @@ public class ShoppingCart {
     public ShoppingCart(List<Item> items) {
         if (items == null) {
             this.items = new ArrayList<Item>();
+        } else {
+            this.items = items;
+
         }
     }
 
@@ -29,4 +32,11 @@ public class ShoppingCart {
         this.items.clear();
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 }

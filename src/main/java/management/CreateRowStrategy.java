@@ -9,5 +9,5 @@ import java.util.List;
  * Created by ehsangolshani on 2/5/18.
  */
 public interface CreateRowStrategy {
-    public List<Item> createRow(Iterator<Item> tems);
+    public List<Item> createRow(Iterator<Item> items);
 }

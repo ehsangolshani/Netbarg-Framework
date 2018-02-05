@@ -82,12 +82,22 @@ public class User {
         this.wishList.remove(item);
     }
 
+    public void addToShoppingCart(Item item) {
+        this.shoppingCart.addItem(item);
+    }
+
+    public void removeFromShoppingCart(Item item) {
+        this.shoppingCart.removeItem(item);
+    }
+
     public void like(Item item) {
         item.addLike(this);
+        this.wishList.add(item);
     }
 
     public void unlike(Item item) {
         item.removeLike(this);
+        this.wishList.remove(item);
     }
 
     public boolean login(String username, String password) {
@@ -115,6 +125,10 @@ public class User {
             double shoppingPrice = this.purchaseStrategy.purchase(items.iterator(), this, discountCode);
             Transaction userTransaction = new Transaction(this, items, shoppingPrice);
             paymentHandler.addTransaction(userTransaction);
+            this.purchasedItems.addAll(items);
+            for (Item item : items) {
+                item.getSales().addBuyer(this);
+            }
             return true;
         } else {
             return false;
@@ -185,6 +199,18 @@ public class User {
         this.credit = credit;
     }
 
+    public void setPurchasedItems(List<Item> purchasedItems) {
+        this.purchasedItems = purchasedItems;
+    }
+
+    public List<Item> getWishList() {
+        return wishList;
+    }
+
+    public void setWishList(List<Item> wishList) {
+        this.wishList = wishList;
+    }
+
     public boolean isLoginStatus() {
         return loginStatus;
     }
@@ -199,5 +225,10 @@ public class User {
 
     public void setShoppingCart(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
+    }
+
+    @Override
+    public String toString() {
+        return this.firstName + " " + this.lastName;
     }
 }

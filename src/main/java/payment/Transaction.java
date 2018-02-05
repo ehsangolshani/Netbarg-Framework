@@ -1,7 +1,6 @@
 package payment;
 
 import item.Item;
-import user.Account;
 import user.User;
 
 import java.util.List;
@@ -42,5 +41,10 @@ public class Transaction {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        return Double.toString(this.amount);
     }
 }

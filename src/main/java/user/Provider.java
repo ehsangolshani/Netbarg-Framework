@@ -22,7 +22,8 @@ public class Provider {
     private List<User> likedUsers;
     private List<Item> publishItems;
 
-    public Provider(User user, String providerName, String address, String city, String longitude, String latitude, List<User> likedUsers, List<Item> publishItems) {
+    public Provider(User user, String providerName, String address, String city, String longitude,
+                    String latitude, List<Item> publishItems) {
         this.user = user;
         this.providerName = providerName;
         this.address = address;
@@ -30,6 +31,12 @@ public class Provider {
         this.longitude = longitude;
         this.latitude = latitude;
         this.likedUsers = new ArrayList<User>();
+
+        if (publishItems == null) {
+            this.publishItems = new ArrayList<Item>();
+        } else {
+            this.publishItems = publishItems;
+        }
     }
 
 
@@ -41,6 +48,14 @@ public class Provider {
         this.likedUsers.remove(user);
     }
 
+    public void publish(Item item) {
+        this.publishItems.add(item);
+    }
+
+    public void unpublish(Item item) {
+        this.publishItems.remove(item);
+    }
+
     public void createItem(Item item, ItemHandler itemHandler, List<Tag> tags) {
         item.addTags(tags);
         for (Tag tag : tags) {
@@ -49,6 +64,11 @@ public class Provider {
         itemHandler.addItem(item);
         itemHandler.addTags(tags);
 
+    }
+
+    @Override
+    public String toString() {
+        return this.providerName;
     }
 }
 

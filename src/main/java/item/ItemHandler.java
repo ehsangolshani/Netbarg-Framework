@@ -1,10 +1,6 @@
 package item;
 
-import category.BaseCategory;
-import category.Category;
-import category.CompositeCategory;
 import search.ItemFinderStrategy;
-import search.ItemSearchByName;
 import search.ItemSearchStrategy;
 
 import java.util.*;
@@ -17,8 +13,7 @@ public class ItemHandler {
     private List<Tag> tags = new ArrayList<Tag>();
     private CompositeCategory itemCategories;
 
-    public ItemHandler(ItemSearchStrategy itemSearchStrategy, ItemFinderStrategy itemFinderStrategy
-            , CompositeCategory itemCategories) {
+    public ItemHandler(CompositeCategory itemCategories) {
         this.items = new ArrayList<Item>();
         this.tags = new ArrayList<Tag>();
         this.itemCategories = itemCategories;

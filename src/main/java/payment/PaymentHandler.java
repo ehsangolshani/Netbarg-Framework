@@ -14,7 +14,11 @@ public class PaymentHandler {
     private List<Transaction> transactions;
 
     public PaymentHandler(List<Transaction> transactions) {
-        this.transactions = transactions;
+        if (transactions == null) {
+            this.transactions = new ArrayList<Transaction>();
+        } else {
+            this.transactions = transactions;
+        }
     }
 
     public void addTransaction(Transaction transaction) {
@@ -37,4 +41,11 @@ public class PaymentHandler {
         return resultTransactions;
     }
 
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
 }

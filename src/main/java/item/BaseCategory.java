@@ -1,4 +1,4 @@
-package category;
+package item;
 
 /**
  * Created by ehsangolshani on 12/31/17.
@@ -16,5 +16,10 @@ public class BaseCategory implements Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

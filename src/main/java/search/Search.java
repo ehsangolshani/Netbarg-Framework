@@ -24,7 +24,15 @@ public class Search {
         return this.itemSearchStrategy.searchItems(data, this.itemHandler.getItems().iterator());
     }
 
-    public List<Item> findItems(String data, List<Item> items) {
-        return this.itemSearchStrategy.searchItems(data, this.itemHandler.getItems().iterator());
+    public List<Item> findItems(List<Item> items) {
+        return this.itemFinderStrategy.findItems(this.itemHandler.getItems().iterator());
+    }
+
+    public ItemHandler getItemHandler() {
+        return itemHandler;
+    }
+
+    public void setItemHandler(ItemHandler itemHandler) {
+        this.itemHandler = itemHandler;
     }
 }

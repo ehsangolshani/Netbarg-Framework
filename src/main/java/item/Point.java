@@ -31,4 +31,9 @@ public class Point {
     public void setSender(User sender) {
         this.sender = sender;
     }
+
+    @Override
+    public String toString() {
+        return Double.toString(this.value);
+    }
 }

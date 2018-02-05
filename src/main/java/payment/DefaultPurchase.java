@@ -11,6 +11,14 @@ import java.util.Iterator;
 public class DefaultPurchase implements PurchaseStrategy {
 
     public double purchase(Iterator<Item> items, User user, String discountCode) {
-        return 0;
+        double totalAmount = 0;
+
+        while (items.hasNext()) {
+            totalAmount += items.next().calculateCost();
+        }
+        if (discountCode.equals("golden code")) {
+            totalAmount = totalAmount * (3.0 / 4.0);
+        }
+        return totalAmount;
     }
 }
